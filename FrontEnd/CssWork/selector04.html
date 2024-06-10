@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .fruits span:first-child{ 
+            일치선택자이므로 span이고 firstchild인 요소를 찾는다.
+            color : red;
+        }
+        .fruits :last-child{
+            color: yellowgreen;
+        }
+        .fruits :nth-child(2n){
+            color : skyblue;
+        } */
+        .fruits :not(span){
+            color : blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <div class="fruits">
+        <span>strawberry</span>
+        <span>watermelon</span>
+        <div>orange</div>
+        <p>mango</p>
+        <h3>apple</h3>
+    </div>
+</body>
+</html>

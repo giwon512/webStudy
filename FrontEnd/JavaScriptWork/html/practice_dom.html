@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fnLoad(){
+            const s1 = document.querySelector('#first').childNodes.item(0).textContent;
+            const s2 = document.getElementById('chat-link').textContent;
+            const s3 = document.querySelector('.inner-text:last-child').firstChild.textContent;
+            const s4 = document.querySelectorAll('a')[1].textContent;
+            const s5 = document.documentElement.lastChild.childNodes[3].textContent;
+            const s6 = document.querySelectorAll('.outer-text')[1].textContent;
+            console.log(s1);
+            console.log(s2);
+            console.log(s3);
+            console.log(s4);
+            console.log(s5);
+            console.log(s6);
+        }
+    </script>
+</head>
+<body onload="fnLoad();">
+    <div>
+        <p class="inner-text first-item" id="first">
+            Happy Week
+            <a href="https://chat.netsong7.net" id="chat-link">netsong7</a>
+        </p>
+        <p class="inner-text second-item">
+            Happy Programming
+            <a href="https://www.w3schools.com" id="w3-link">W3schools</a>
+        </p>
+    </div>
+    <p class="outer-text first-item" id="second">
+        <b>
+            Programming is funny
+        </b>
+    </p>
+    <p class="outer-text">
+        <b>
+            All or Nothing!
+        </b>
+    </p>
+</body>
+</html>

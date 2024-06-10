@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let cnt = 1;
+        function fnDeleteItem(id){
+           let elem = document.getElementById(id);
+           elem.remove(); 
+        }
+
+        function fnAppendItem(){
+            let newItem = document.createElement("div");
+            newItem.setAttribute("id", `item${cnt}`);
+            newItem.innerHTML = /* html */ `새로 추가된 아이템 [${cnt++}] <input type=\"button\" value = \"삭제\" \
+            onclick=\"fnDeleteItem('${newItem.id}');\">`;
+            //newItem.id값은 객체정보가 저장되어 넘어가므로 반드시 따옴표로 묶어줘야 id값이 전달됨
+            document.querySelector("#itemList").append(newItem);
+        }
+
+        function fn3sImage(){
+            let container = document.querySelector(".container");
+            //container.innerHTML = /* html */ `<img src='./Penguins.jpg'>`;
+            let e_img = document.createElement("img");
+            e_img.src = "./Penguins.jpg";
+            container.append(e_img);
+            document.querySelector(".container>span").textContent = "이미지가 로드되었습니다.";
+        }
+    </script>
+</head>
+<body onload="setTimeout(fn3sImage, 3000);">
+    <input type="button" value="추가" onclick="fnAppendItem();">
+    <div id="itemList"></div>
+    <hr>
+    <div class="container">
+        <h2>Image Loading...</h2>
+        <span>3초 후에 이미지가 로드됩니다.</span>
+    </div>
+</body>
+</html>

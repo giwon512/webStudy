@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script>
+	window.onload = () => {
+		let req = new XMLHttpRequest();
+		req.open("GET", "basic6.jsp", true);
+		req.onreadystatechange = () => {
+			if(req.readyState == 4){
+				if(req.status == 200){
+					let txt = eval("(" + req.responseText + ")");
+					let msg = "";
+					for(let i = 0; i < txt.length; i++) {
+						msg += txt[i].no + ", " + txt[i].name + ", " + txt[i].job + "<br>";
+					}
+					document.body.innerHTML = msg;
+				
+				}
+				else{
+					alert(req.status);
+				}
+			}
+		};
+		req.send(null);	
+	};
+</script>
+</head>
+<body>
+	<h1>서버로부터 JSON 타입의 데이터(배열)를 받는 예제</h1>
+</body>
+</html>

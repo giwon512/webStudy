@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiwon</title>
+</head>
+<body>
+    <h1 style="color: skyblue;">Web03 프로젝트</h1>
+	<a href="http://localhost:8080/web3/reqTest">ReqTest 서블릿 호출</a>
+	<form action="http://localhost:8080/web3/reqTest">
+		이름 : <input type="text" name="name" /><br/><br/>
+		주소 : <input type="text" name="addr" /><br/><br/>
+		<button>전송</button>
+	</form>
+	
+	<form action="http://localhost:8080/web3/reqTest" method="POST">
+		이름 : <input type="text" name="name" /><br/><br/>
+		주소 : <input type="text" name="addr" /><br/><br/>
+		<button>전송</button>
+	</form>
+</body>
+</html>

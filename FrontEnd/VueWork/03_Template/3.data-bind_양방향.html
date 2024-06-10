@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단방향바인딩</title>
+    <script src="../vue.global.js"></script>
+</head>
+<body>
+    <h1>양방향 바인딩</h1>
+    
+    <div id="app">
+        <input type="text" v-model="message"/>
+        <div>
+            입력한 내용 : {{message}}
+        </div>
+    </div>
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            data() {
+                return {message : "내용없음"}
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>

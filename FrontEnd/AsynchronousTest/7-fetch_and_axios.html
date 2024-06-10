@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="result">
+
+    </div>
+    <script>
+        //XMLHttpRequest
+        // var httpRequest = new XMLHttpRequest();
+        // httpRequest.onreadystatechange = () => {
+        //     if(httpRequest.readyState == 4 && httpRequest.status == 200){
+        //         document.getElementById("result").innerHTML = httpRequest.responseText;
+        //     }
+        // }
+        // httpRequest.open("GET", "https://jsonplaceholder.typicode.com/users/3", true);
+        // httpRequest.send();
+
+        //fetch
+        // fetch("https://jsonplaceholder.typicode.com/users/2")
+        //     .then(res => res.text())
+        //     .then(text => {
+        //         document.getElementById("result").innerHTML = text
+        //     });
+
+        //axios
+        axios("https://jsonplaceholder.typicode.com/users/2")
+            .then(res => JSON.stringify(res))
+            .then(text => {
+                document.getElementById("result").innerHTML = text
+            });
+    </script>
+</body>
+</html>

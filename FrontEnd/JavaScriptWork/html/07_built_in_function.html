@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fnPopup(){
+            // window.alert("called alert");
+            
+            // let input = window.prompt("input value : ");
+            // document.write(input);
+
+            let input = window.confirm("what's your choice?"); //true or false
+            if(input === true)
+                window.alert("you chose ok");
+            else
+                window.alert("you chose cancel");
+        }
+
+        function fnEval(){
+            let ex = "50 * 2 + 3";
+            console.log(eval(ex));
+
+            ex = "window.alert('hello'); document.write('world');";
+            eval(ex);
+        }
+
+        function fnParse(){
+            let num1 = "33";
+            let num2 = "22";
+            console.log(eval(num1) + eval(num2));
+            console.log(parseInt(num1) + parseInt(num2));
+            console.log(parseInt("  3 3abc") + 5);
+            console.log(parseFloat("3.141592"))
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="alert test"
+        onclick="fnPopup();"><br><br>
+    <input type="button" value="evaluation test"
+        onclick="fnEval();"><br><br>
+    <input type="button" value="parse test"
+        onclick="fnParse();"><br><br>
+</body>
+</html>

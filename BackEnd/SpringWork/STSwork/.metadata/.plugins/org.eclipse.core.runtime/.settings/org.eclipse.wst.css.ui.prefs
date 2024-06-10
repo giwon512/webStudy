@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+newFileTemplateName=New CSS File
+org.eclipse.wst.sse.ui.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="true" context\="css_new" deleted\="false" description\="new css file" enabled\="true" id\="org.eclipse.wst.css.ui.internal.templates.newcss" name\="New CSS File">@charset "UTF-8";</template></templates>

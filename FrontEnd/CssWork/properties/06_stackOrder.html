@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width : 300px;
+            background-color: royalblue;
+            position : relative;
+            bottom : 10px;
+            right : 10px;
+        }
+        .container .item {
+            border : 4px dashed red;
+            background-color: orange;
+            width : 100px;
+            height: 100px;
+        }
+        .container .item:nth-child(1) {
+            position: relative;
+        }
+        .container .item:nth-child(2) {
+            position: absolute;
+            top : 50px;
+            left : 50px;  
+            z-index: 3;  
+        }
+        .container .item:nth-child(3){
+            position: relative;
+        }
+        .container .item:nth-child(4){
+            position: absolute;
+            top : 108px;
+            left : 108px;
+            z-index: 3;
+        }
+        .container .item:nth-child(5){
+            position: absolute;
+            left : 108px;
+            top : 0px;
+        }
+        span{
+            background-color: green;
+            width: 200px;
+            height : 200px;
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+    </div>
+    <hr>
+    <br><br><br><br>
+    <span>123
+    </span>
+</body>
+</html>

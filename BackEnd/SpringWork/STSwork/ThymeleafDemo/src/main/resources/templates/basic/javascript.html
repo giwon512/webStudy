@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>javascript</h1>
+	
+	<script th:inline="javascript">
+		let username = [[${user.userName}]];
+		let age = [[${user.age}]];
+		console.log(username + ", " + age);
+		
+		let users = [[${userList}]];
+		console.log(users);
+	</script>
+</body>
+</html>

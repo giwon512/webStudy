@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 좀 더 직관적이다.
+         * await는 promise를 리턴하는 함수에서만 사용한다.
+         * await는 async내에서만 사용할 수 있다.
+        */
+        const a = () => {
+            return new Promise((resolve) => {
+                setTimeout(()=>{
+                    console.log("a");
+                    resolve();
+                }, 1000);
+            });
+        };
+
+        const b = () => console.log("b");
+
+        // a().then(b);
+        const wrap = async () => {
+            await a();
+            b();
+        }
+        wrap();
+
+
+        const getMovies = (movieName) => {
+            return new Promise(resolve => {
+                fetch(`https://www.omdbapi.com/?apikey=7035c60c&s=${movieName}`)
+                .then((resp) => {
+                    return resp.json();
+                })
+                .then((resp) => {
+                    console.log(resp);
+                    resolve();
+                });
+            });
+        };
+
+        const movies = async () => {
+            await getMovies('frozen');
+            console.log('겨울 왕국');
+            await getMovies('avengers');
+            console.log("어벤져스");
+            await getMovies('avatar');
+            console.log("아바타");
+        }
+        // getMovies('frozen')
+        //     .then(() => {
+        //         console.log("겨울왕국");
+        //         return getMovies('avengers');
+        //     })
+        //     .then(() => {
+        //         console.log("어벤져스");
+        //         return getMovies('avatar');
+        //     })
+        //     .then(() => {
+        //         console.log("아바타");
+        //     });
+
+        movies();
+    </script>
+</body>
+</html>

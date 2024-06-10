@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test3</title>
+	</head>
+	<body>
+		<form action="/ServletTest1/singers" method="POST">
+			<h2>좋아하는 가수를 입력해 주세요.</h2>
+			<ul>
+				<li><input type="text" name="singer" /></li>
+				<li><input type="text" name="singer" /></li>
+				<li><input type="text" name="singer" /></li>
+				<li><input type="text" name="singer" /></li>
+			</ul>
+			<br><br>
+			
+			<h2>좋아하는 음식을 선택해 주세요.</h2>
+			<input type="checkbox" name="food" value="짜장면" /> 짜장면 <br>
+			<input type="checkbox" name="food" value="쫄면" /> 쫄면 <br>
+			<input type="checkbox" name="food" value="돼지갈비" /> 돼지갈비 <br>
+			<input type="checkbox" name="food" value="잔치국수" /> 잔치국수 <br>
+			<br><br>
+			
+			<h2>좋아하는 도시를 선택해 주세요.</h2>
+			<select name=city multiple size="4">
+				<option>서울</option>
+				<option>파리</option>
+				<option>런던</option>
+				<option>헬싱키</option>
+			</select>
+			<br><br>
+			<button>전송</button>
+			
+			
+		</form>
+	</body>
+</html>

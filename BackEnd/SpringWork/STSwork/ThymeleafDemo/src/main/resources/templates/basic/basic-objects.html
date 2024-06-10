@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Basic Objects</h1>
+	request : <span th:text="${userName}"></span><br>
+	session : <span th:text="${session.sessionData}"></span><br>
+	parameter : [[${param.paramData}]]<br>
+	Spring Bean : [[${@helloBean.hello("Bean")}]]<br>
+</body>
+</html>

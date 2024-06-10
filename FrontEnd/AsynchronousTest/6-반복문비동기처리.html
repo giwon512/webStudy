@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const getMovies = movieName => {
+            return new Promise(resolve => {
+                fetch(`https://www.omdbapi.com/?apikey=7035c60c&s=${movieName}`)
+                    .then(res => res.json())
+                    .then(res => {
+                        resolve(res);
+                    });
+            });
+        }
+
+        const titles = ['frozen', 'avengers', 'avatar'];
+
+        // titles.forEach(async title => {
+        //     const movies = await getMovies(title);
+        //     console.log(title, movies);
+        // });
+
+        (async () => {
+            for(const title of titles){
+                const movies = await getMovies(title);
+                console.log(title, movies);
+            }
+        })();
+    </script>
+</body>
+</html>

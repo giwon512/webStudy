@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 스타일 상속
+        주로 글자 관련된 속성들은 상속이 된다.
+        다만 높이와 넓이같은 것들은 상속이 되지 않는데,
+        inherit 값을 주어서 강제로 상속을 받게 할 수 있다. */
+        .ecosystem{
+            color : blue;
+        }
+        .animal {
+            color : red;
+        }
+        .parent {
+            width : 300px;
+            height:  200px;
+            background-color: red;
+        }
+        .child{
+            width : inherit;
+            height: 100px;
+            background-color: blue;
+            position : fixed;
+            top : 10px;
+            right : 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ecosystem">생태계
+        <div class="animal"> 동물
+            <div class="tiger">호랑이</div>
+            <div class="lion">사자</div>
+            <div class="elephant">코끼리</div>
+        </div>
+        <div class="plant">식물</div>
+    </div>
+    <hr>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+</body>
+</html>

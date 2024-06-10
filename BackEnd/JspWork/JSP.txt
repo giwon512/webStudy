@@ -1,0 +1,404 @@
+Web Programming
+===============================
+1. 준비 사항
+	(1) 웹 서버
+		무료 - Apache, NginX, IIS, Tomcat, ...
+		유료 - JBoss, Websphere, Weblogic, Jeus, ...
+	(2) 웹 프로젝트 구조
+		프로젝트 폴더
+			html파일
+			WEB-INF폴더 -> 사용자에게 보여줄 수 없는 내용들을 정리하는 곳으로 backend 부분이 된다.
+			즉, 프론트엔드 부분은 web-inf 폴더 밖에 있어야한다. 
+				classes폴더
+				lib
+				web.xml
+	(3) 내가 만든 웹 프로젝트를 톰캣을 통해 실행
+		1) Tomcat 설치 폴더의 webapps 폴더에 프로젝트를 올려놓는다.
+		2) Tomcat 폴더의 conf 폴더에 있는 server.xml에 프로젝트 위치 등록
+			<Context path="외부에서 접근하기 위한 가상 경로"
+				      docBase="실제 프로젝트 작업 경로"
+				      workDir="실제 프로젝트 작업 경로\work" />
+
+
+2. 서블릿(Servlet)
+(1) 특징
+	1) 자바로 만든 Application(웹 서버에서만 실행)
+	2) 클라이언트와 소통
+	3) JavaEE 스펙이 필요, 별도의 라이브러리가 필요 : servlet-api.jar
+	4) javax.servlet.http.HttpServlet 클래스를 상속받음
+
+(2) 서블릿을 구성하는 3대 클래스
+	1) HttpServlet
+	2) HttpServletRequest
+	3) HttpServletResponse
+
+(3) 요청(request) 방식
+	1) GET
+		- 기본 전송 방식
+		- 전송 방법이 다양함
+		- 소량의 데이터를 전송
+		- 전송되는 데이터가 노출됨
+		- 하이퍼링크 전송 방식, url 전송 방식
+		- 조회 목적
+		- 폼 태그로 전송을 할 때도 method를 따로 지정해주지 않으면 get 방식으로 전송
+
+	2) POST
+		- 전송 방법이 단 한 가지
+		- 대량의 데이터를 전송
+		- 전송되는 데이터가 노출되지 않음
+		- 폼 전송 방식
+		- 데이터를 변경하기 위한 목적
+
+	3) 데이터를 꺼내오는 메서드
+		String	getParameter(String name) : 한 개의 값 리턴
+		String[]	getParameterValues(String name) : 배열 값 리턴
+		Enumeration<String>	getParameterNames() : 값이 아닌 변수의 이름을 가져온다
+
+
+(4) LifeCycle
+	1) init()
+		- 최초의 사용자가 접속시 서블릿 객체가 생성된다. (서블릿은 싱글톤이다.)
+	2) service()
+		- 사용자에 의해 요청이 들어올 때마다 호출된다.
+		- doXXX를 호출한다.
+	3) destroy()
+		- 서버가 종료될 때 호출한다.
+
+(5) 웹 페이지 중요기술
+
+(6) 쿠키, 세션
+
+(7) 기본 문서 지정과 최상위 URL에서 실행
+	1) web.xml에서 <welcome-file-list> 수정
+	
+
+3. JSP
+	- HTML 안에 java 코드를 포함시키는 형태
+	- 확장자는 반드시 .jsp로 저장
+	- syntax
+		- ScriptElement
+		- Directive
+		- Implicit Object
+		- ActionTag
+		- EL
+
+(1) ScriptElement
+	1) <% ... %> : Scriptlet (처리부)
+	2) <%= ... %> : Expression (표현부) - 출력
+	3) <%! ... %> : Declaration (선언부) - 전역 인스턴스 변수로 선언됨
+
+	※ CSR과 SSR
+		- CSR(Client Side Rendering)
+			- 서버로부터 소스를 받아와서 클라이언트에서 실행시키는 방식
+			- 페이지 로드 속도가 빠르고 사용자 겸험이 향상된다.
+			- SEO(검색엔진 최적화)에 불리하다.
+			- 초기 로드시 필요한 자원이 많아질 수 있다. 특히 모바일에서는 추가적인 대역폭 소모가 일어날 수 있다.
+			- 코드가 노출된다.
+		- SSR(Server Side Rendering)
+			- 서버에서 HTML을 렌더링하여 완성된 페이지를 클라이언트에게 전달하는 방식
+			- SEO에 유리하다.
+			- 코드가 노출되지 않는다.
+
+(2) Directive
+	1) <%@ page 속성=... %>
+	2) <%@ include file=... %>
+	3) <%@ taglib 속성=... %>
+
+(3) Implicit Object
+	1) 입출력 관련
+		- request : javax.servlet.http.HttpServletRequest
+		- response : javax.servlet.http.HttpServletResponse
+		- out : javax.servlet.jsp.JspWriter
+
+	2) 서블릿 관련
+		- page
+		- config
+
+	3) Context 관련
+		- request : 요청 받은 그 순간까지 유지
+		- session : 사용자마다 개별의 공간을 가짐, 설정한 시간만큼 유지
+		- application : 하나의 공간으로 서버가 꺼지기까지 유지
+		- pageContext : 같은 페이지 내에서 값 유지, 모든 컨텍스트 객체를 관리하기 위해 만들어짐
+										ex) pageContext.setAttribute("i", 10, session);
+		------------------
+		*. 공통 메서드
+			setAttribute("속성명", 값)
+			getAttribute("속성명")
+			removeAttribute("속성명")
+
+(4) Action Tag : 페이지별로 정확한 역할 분담이 되게 하기 위해서 자바코드를 따로 다루게 하는 기법
+	1) Standard Action Tag
+	2) Custom Action Tag
+	---------------------------------
+	- 페이지 이동 태그
+	<jsp:include />
+		<%@include file="exam2.jsp" %>
+		<jsp:include page="exam2.jsp" />
+		두 방식의 동작의 차이
+			- 지시자 방식은 컴파일 타임에 파일 두 개를 합쳐버리기 때문에 같은 파일로 인식이 되어 pageContext가 공유됨
+			- 액션 태그의 경우 파일이 각각 따로 컴파일이 되고 런타임에 동적으로 포함이 되어 다른 페이지로 인식된다.
+
+	<jsp:forward />
+		: request로 받은 내용을 다시 다른 페이지로 넘길 수 있음.
+
+		페이지 이동 기술
+		- HTML
+			- a 태그
+			- meta 태그
+		- JS
+			- location.href="pageurl"
+			- history.back()
+		- java
+			- response.sendRedirect()
+			- <jsp:include />
+			- <jsp:forward />
+			- <%@ page errorPage="" %>
+		---------------------------------------------
+		페이지를 이동하는 방식
+			- 클라이언트측 이동 기술
+				HTML
+				Javascript
+				response.sendRedirect()
+			- 서버측 이동 기술 : 사용자가 페이지 이동을 눈치챌 수 없다.
+				<jsp:include />
+				<jsp:forward />
+				<%@ page errorPage="" %>
+	- Bean 태그
+		- 패키지가 반드시 있어야 함
+		- 배열과 같은 index property는 액션태그로 처리할 수 없다.
+
+		<jsp:useBean />
+			- 클래스 인스턴스를 생성
+			- 이미 생성되어 있는 인스턴스를 참조 
+			- 액션태그로 만든 객체는 scriptlet으로 사용가능
+
+		<jsp:setProperty>
+			- setter  메서드를 호출
+			- 프로퍼티 속성에 세터 메서드를 기술할때 set은 생략한다.
+
+		<jsp:getProperty>
+			- getter 메서드를 호출하고 화면에 출력
+		------------------------------------------------------------------------------
+		*. Bean의 Scope
+			 - page, request, session, application
+
+		JavaBean 객체를 사용할 때 name 속성의 값을 액션태그의 value 속성과 일치시키면, 
+		form에서 값을 넘겨받을 때 자동으로 해당 값을 JavaBean 객체의 속성에 매핑해준다. 
+		이를 자바빈의 "자동 프로퍼티 매핑(automatic property mapping)"이라고 한다.
+
+		*. Index property
+			- 배열과 같이 여러 개의 값을 가지는 프로퍼티로 액션태그로 처리하기 위해서는 custom action tag를 사용해야 한다.
+
+		*. 참/거짓 property
+			<jsp:getProperty name="..." property="valid" />
+			public boolean getValid(){
+				return true;
+			}
+			- 리턴 타입이 boolean인 getter method의 경우에는 이름을 꼭 get으로 시작할 필요없이 is로 시작해도 된다.
+			public boolean isValid(){
+				return true;
+			}
+
+
+
+		*.DTO(Date Transfer Object)
+
+(5) 데이터베이스 연동
+	1) JDBC(Java DataBase Connectivity)
+		- 해당 DB 드라이버 준비 : mvnrepository.com
+		- 표준 API : java.sql.*
+				Connection
+				Statement (PrepareStatement)
+				ResultSet
+	2) 첫 번째 예제
+		CREATE TABLE tblEmp(
+			e_no		number,
+			e_id		varchar2(10),
+			e_name	varchar2(20),
+			e_pass	varchar2(10),
+			e_address	varchar2(50),
+			CONSTRAINT pk_eno PRIMARY KEY(e_no)
+		);
+		
+		CREATE SEQUENCE seq_eno;
+
+
+	3) DBCP(DataBase Connection Pool)
+		데이터베이스 연결을 풀링하여 재사용함으로써 데이터베이스에 대한 연결을 효율적으로 관리하고 성능을 향상시키는 db 연결 기술
+		기존 코드의 문제점
+		- 지속적인 연결 시도(성능 악화를 초래)
+		- 중복된 코드
+			
+		성능 향상: DBCP는 데이터베이스 연결을 풀링하여 재사용함으로써 연결을 생성하고 
+			종료하는 데 필요한 오버헤드를 줄입니다. 이는 애플리케이션의 성능을 향상시킬 수 있습니다.
+		
+		- 구현 방법
+			- 직접 작성
+			- 외부 라이브러리(hicariCP, c3p0, tomcat dbcp)
+			- WAS에서 제공
+		
+		-JNDI(Java Naming and Directory Interface)
+			- 디렉터리 서비스에서 제공하는 데이터 및 객체를 찾고 참고하기 위한 api
+
+	4) 게시판 만들기
+		CREATE TABLE tblBoard(
+		b_num number,
+		b_name varchar2(20),
+		b_email varchar2(50),
+		b_homepage varchar2(50),
+		b_subject varchar2(50),
+		b_content varchar2(4000),
+		b_pass varchar2(10),
+		b_count number,
+		b_ip varchar2(50),
+		b_regdate date,
+		pos number,
+		depth number,
+		CONSTRAINT pk_b_num PRIMARY KEY(b_num)
+		);
+		
+		CREATE SEQUENCE seq_b_num
+
+		INSERT INTO tblboard VALUES(seq_b_num.nextVal, '글쓴이', '이메일', '홈페이지', '제목', '내용', '1111', 0, 'localhost', sysdate, 0, 0);
+
+		- 답변 달기
+		CREATE TABLE tblReply(
+			num number,
+			title varchar2(50),
+			pos number,
+			depth number
+		);
+
+		CREATE SEQUENCE seq_reply_num;
+		*. 새 글을 입력할 때는 무조건  pos와 depth를 0으로 입력
+		*. 단, 그 전에 입력된 글의 pos는 1씩 증가(같은 pos값은 존재할 수 없음)
+		
+		update tblreply set pos = pos + 1;
+		INSERT INTO tblReply values(seq_reply_num.nextVal, '첫 번째 글', 0, 0);
+
+		update tblreply set pos = pos + 1;
+		INSERT INTO tblReply values(seq_reply_num.nextVal, '두 번째 글', 0, 0);
+
+		*. 답변을 달 때에는 선택한 부모글의 pos 보다 큰 값은 1씩 증가하고
+		답변글의 pos는 부모pos + 1, depth는 부모depth + 1로 처리
+
+		update tblreply set pos = pos + 1 where pos > 선택한 부모의 pos;
+		insert into tblreply values(seq_reply_num.nextVal, '두 번째 글의 답변', 부모의 pos + 1, 부모의 depth + 1);
+
+
+(5) EL / JSTL
+	1) EL(Expression Language)
+		<%= %>
+		<% out.xxx %>
+		<jsp:getProperty ... />
+		---------------------------------
+		${ 식 }
+				식
+					attribute명
+					bean 또는 map
+					EL 내장객체
+					객체.프로퍼티 또는 객체[프로퍼티]
+				EL 내장객체
+					pageScope
+					requestScope
+					sessionScope
+					applicationScope
+					-> 객체들의 기능을 사용할 수 없고, 해당 범위에 저장된 변수들만 꺼내쓸 수 있다.
+
+					param
+					paramValues
+
+					header
+					headerValues
+
+					cookie
+					initParam : application.getInitParameter("web.xml에 등록한 변수");
+
+					pageContext
+				- 자체적으로 예외처리를 하기 때문에 null값 오류가 발생하지 않는다.
+
+	2) JSTL(Jsp Standard Tag Library)
+		-역할 및 특징
+			EL이나 표준 ActionTag로 처리하기 힘든 부분을 담당
+			연산, 조건, 반복 등
+		-구분
+			*. Core
+				일반 프로그래밍에서 제공하는 것과 유사한 변수선언, 실행흐름의 제어 기능을 제공
+				페이지 이동 기술 제공
+				uri:http://java.sun.com/jsp/jstl/core
+
+			*. Formatting
+				숫자, 날짜, 시간을 포맷팅하는 기능과 국제화, 다국어 기능을 제공
+				uri:http://java.sun.com/jsp/jstl/fmt
+
+			*. Database
+				DB의 데이터를 수정/삭제/삽입/입력/조회하는 기능을 제공
+				uri:http://java.sun.com/jsp/jstl/sql
+
+			*. XML
+				XML 문서를 처리할 때 필요한 기능을 제공
+				uri:http://java.sun.com/jsp/jstl/xml
+
+			*. Function
+				문자열을 처리하는 함수를 제공
+				uri:http://java.sun.com/jsp/jstl/fn
+
+4. BootStrap
+(1) UI 프레임워크
+(2) html, css, javascript
+(3) 버전
+(4) https://getbootstrap.com
+
+
+5. MVC(Model View Controller)
+
+	factory pattern with singleton pattern
+
+	front pattern을 통한 경로 일관화
+
+
+6. AJAX(Asynchronous Javascript and Xml)
+(1) 비동기 처리(요청) 방식
+(2) 선수 기술
+	1) HTML, CSS, Javascript
+	2) XML, JSON
+(3) XMLHttpRequest
+	1) onreadystate
+		-readystate
+			0(uninitialized) : 객체만 생성되고 아직 초기화가 안 된 상태
+			1(loading) : open()이 호출되고 아직 send()까지는 호출되지 않은 상태
+			2(loaded) : send()가 호출되고 서버로부터 status와 header 정보는 아직 도착하지 않은 상태
+			3(interactive) : 서버로부터 데이터의 일부만 받은 상태(받고 있는 중)
+			4(complete) : 서버로부터 데이터를 전부 받은 상태
+		- status
+			200 : OK
+			나머지 번호는 에러로 흔히 볼 수 있는데 404, 500번 에러가 있다.
+			3XX : 리디렉션
+			4XX : 클라이언트 에러
+			5XX : 서버 에러
+
+
+(4) XML (eXtensible Markup Language)
+	GML -> SGML(standard) -> XML -> HTML
+	- xml은 마크업 언어를 만들 수 있는 언어이다.
+	
+	메타언어	
+
+	용도
+		- 데이터 표준화
+		(이 기종 시스템 간의 정보교환, 웹서비스, 유비쿼터스 등)
+		-Database
+
+
+
+
+(5) JSON (JavaScript Object Notation)
+- xml 대신에 사용되는 표기법, 태그를 줄이고 데이터 위주로 다루기 위해서 사용
+	- 맵 형식
+		{키 : 값, 키 : 값, ...}
+	- 배열 형식
+		[값, ...]
+	-혼합
+		[{키:값}, {키:값}, ..]
+
+

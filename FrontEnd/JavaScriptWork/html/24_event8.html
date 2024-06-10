@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function() {
+            const child1 = document.querySelector('.child:first-child');
+            const child2 = document.querySelector('.child:last-child');
+
+            child2.addEventListener('click', e => {
+                console.log('click event in child2');
+            });
+            
+            child2.addEventListener('wheel', e => {
+                console.log('wheel event in child2');
+            });
+            
+            child2.addEventListener('mousedown', e => {
+                console.log('mousedown event in child2');
+            });
+            //dispatch event : 다른 요소의 이벤트를 강제로 발생하게 함
+            child1.addEventListener('click', e => {
+                child2.dispatchEvent(new Event('click'));
+                child2.dispatchEvent(new Event('wheel'));
+                child2.dispatchEvent(new Event('mousedown'));
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">1</div>
+        <div class="child">2</div>
+    </div>
+</body>
+</html>

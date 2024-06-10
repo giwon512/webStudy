@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const a = () => {
+            return new Promise((resolve) => {
+                setTimeout(()=>{
+                    console.log("a");
+                    resolve();
+                }, 1000);
+            });
+        };
+
+        const b = () => {
+            return new Promise((resolve) => {
+                console.log("b");
+                resolve();
+            });
+        };
+
+        const c = () => {
+            return new Promise((resolve) => {
+                console.log("c");
+                resolve();
+            });
+        };
+        const d = () => {
+            setTimeout(()=>{
+                console.log("d");
+            }, 1000);
+        };
+
+        // a().then(() => {
+        //     b().then(() => {
+        //         c().then(() => {
+        //             d();
+        //         });
+        //     });
+        // });
+
+        // a().then(() => {return b()})
+        //     .then(() => c())
+        //     .then(() => d());
+
+        // 단순히 동기적인 작업이 수행되는 경우에는 프로미스 객체를 리턴하지 않아도 순서대로 작동한다.
+        a().then(b).then(c).then(d).then(()=> {console.log("done")});
+
+        const getMovies = (movieName) => {
+            return new Promise(resolve => {
+                fetch(`https://www.omdbapi.com/?apikey=7035c60c&s=${movieName}`)
+                .then((resp) => {
+                    return resp.json();
+                })
+                .then((resp) => {
+                    console.log(resp);
+                    resolve();
+                });
+            });
+        };
+
+        // getMovies('frozen', () => {
+        //     console.log("겨울 왕국!");
+        //     getMovies('avengers', () => {
+        //         console.log("어벤져스!");
+        //         getMovies('avatar', () => {
+        //             console.log("아바타!");
+        //         });
+        //     });
+        // });
+
+        getMovies('frozen')
+            .then(() => {
+                console.log("겨울왕국");
+                return getMovies('avengers');
+            })
+            .then(() => {
+                console.log("어벤져스");
+                return getMovies('avatar');
+            })
+            .then(() => {
+                console.log("아바타");
+            });
+        
+        
+    </script>
+</body>
+</html>

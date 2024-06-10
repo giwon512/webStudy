@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+<body>
+    <h1>v-if</h1>
+    <div id="app">
+        <button @click="tog">토글</button>
+        <template v-if="visible">
+            <div>크와앙1</div>
+            <div>크와앙2</div>
+            <div>크와앙3</div>
+        </template>
+        <template v-else>
+            <div>공룡이나타났다1</div>
+            <div>공룡이나타났다2</div>
+            <div>공룡이나타났다3</div>
+         </template>
+         <br><br>
+         <div id="hakjum">
+            <div>
+                점수 입력 : <input type="text" v-model="score"/>
+            </div>
+            {{score}}
+            <div v-if="score >= 90"> A학점입니다.</div>
+            <div v-else-if="score >= 80"> B학점입니다.</div>
+            <div v-else-if="score >= 70"> C학점입니다.</div>
+            <div v-else-if="score >= 60"> D학점입니다.</div>
+            <div v-else> F학점입니다.</div>
+        </div>
+    </div>
+
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            data() {
+                return {visible: false, score: ''}
+            },
+            methods:{
+                tog(){
+                    this.visible = !this.visible;
+                }
+            },
+        }).mount("#app")
+    </script>
+</body>
+</html>

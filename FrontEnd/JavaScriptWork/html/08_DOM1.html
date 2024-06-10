@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // document.getElementById() : id 선택
+        // document.querySelector() : css 선택자 선택
+        // document.querySelectorAll() 
+        /*
+        -N.parentElement : 노드의 부모요소 반환
+        -E.closest()
+        -N.previousSibling / N.nextSibling
+        -E.previousElementSibling / E.nextElementSibling
+        -E.children/N.childNodes
+        -E.firstElementChild / E.lastElementChild
+        */
+        function fnLoad(){
+            const parent = document.querySelector('.parent');
+            console.log(parent);
+            console.log(parent.childNodes) // Node
+            console.log(parent.children) // Element(only tags)
+
+            console.log("------------------------");
+
+            const e1 = document.getElementById('child2');
+            console.log(e1);
+            const e2 = document.getElementById('child211111');
+            console.log(e2);
+            const e3 = document.querySelector('.child');
+            console.log(e3);
+            const e4 = document.querySelector('.child:last-child');
+            console.log(e4);
+            const e5 = document.querySelectorAll('.child');
+            // console.log(e5);
+            // console.log(e5[0].textContent);
+            // for(let i = 0 ; i < e5.length; i++){
+            //     console.log(e5[i].textContent);
+            // }
+            e5.forEach((e) => {
+                console.log(e.textContent);
+            })
+
+            console.log("------------------------");
+
+            const e6 = document.querySelector(".child");
+            console.log(e6.parentElement);
+            console.log(e6.closest('div'));
+            console.log(e6.closest('body'));
+            console.log(e6.previousSibling); //#text -> 주석과 태그 사이 공백도 텍스트 노드로 본다.
+            console.log(e6.nextSibling);
+            console.log(e6.previousSibling.parentElement);
+            console.log(e6.parentElement.children);
+            console.log(e6.parentElement.lastElementChild);
+        }
+    </script>
+</head>
+<body onload="fnLoad();">
+    <div class="parent">
+        <!-- 주석 -->
+        <div class="child">1</div>
+        text1
+        <div id="child2" class="child">2</div>
+        text2
+    </div>
+</body>
+</html>

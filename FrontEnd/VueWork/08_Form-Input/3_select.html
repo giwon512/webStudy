@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <select v-model="gen">
+                <option value="">오호대장군</option>
+                <option v-for="mem in selList" :value="mem">{{mem}}</option>
+            </select>
+            <p>오호대장군 : {{gen}}</p>
+        </div>
+        <hr>
+        <div>
+            <select v-model="msg2">
+                <option value="">오호대장군</option>
+                <option v-for="sel in selList2" :value="sel.value">{{sel.value}}</option>
+            </select>
+            <p>오호대장군 : {{msg2}}</p>
+        </div>
+    </div>
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            data() {
+                return {msg1 : "관우",
+                        selList : ["관우", "장비", "마초", "황충", "조운"],
+                        gen : "관우",
+                        selList2 : [
+                            {value : "관우", label : "관우입니다."},
+                            {value : "장비", label : "장비입니다."},
+                            {value : "마초", label : "마초입니다."},
+                            {value : "황충", label : "황충입니다."},
+                            {value : "조운", label : "조운입니다."}
+                        ],
+                        msg2 : "관우"
+                };
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>

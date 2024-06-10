@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>컨텐츠 텍스트 출력하기</h1>
+	
+	Escape처리<br>
+	<ul>
+		<li><span th:text="${data1}"></span></li>
+		<li>[[${data1}]]</li>
+	</ul>
+	
+	<hr>
+	
+	Unescape처리<br>
+	<ul>
+		<li><span th:utext="${data2}"></span></li>
+		<li>[(${data2})]</li>
+	</ul>
+	
+	<hr>
+	
+	[[...]] & [(...)]<br>
+	<span th:inline="none">[[...]] & [(...)]</span>
+	<aaa><br>
+	&lt;aaa>
+</body>
+</html>

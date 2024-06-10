@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Insert title here</title>
+		<script>
+			function nullCheck(){
+				let input = document.getElementsByTagName("input");
+				for(let i = 0; i < input.length; i++){
+					if(input.item(i).value === ""){
+						alert("빈 칸을 채워주세요");
+						return false;
+					}
+				}
+				return true;
+			}
+		</script>
+	</head>
+	<body>
+		<h1>성적 처리 프로그램</h1>
+		<form action="/ServletTest1/grade" method="GET" onSubmit="return nullCheck();">
+			국어 : <input type="text" name="kor" /><br><br>
+			영어 : <input type="text" name="eng" /><br><br>
+			수학 : <input type="text" name="math" /><br><br>
+			<input type="radio" name="result" value="sum" checked> 총점 &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="result" value="avg"> 평균 <br><br>
+			<button>전송</button>
+		</form>
+	</body>
+</html>

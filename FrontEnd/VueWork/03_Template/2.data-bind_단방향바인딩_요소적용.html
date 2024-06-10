@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단방향바인딩</title>
+    <script src="../vue.global.js"></script>
+</head>
+<body>
+    <h1>단방향 바인딩</h1>
+    요소의 속성에도 바인딩을 할 수 있다
+    <div id="app">
+        <!-- <div v-bind:class="'class1'+ count"> -->
+        <div :class="'class1'+ count">
+            count = {{count}}
+        </div>
+    </div>
+
+    <script>
+        const {createApp} = Vue;
+        createApp({ 
+            data(){
+                return {count : 1}
+            },
+            created(){
+                this.addCount();
+            },
+            methods : {
+                addCount : function(){
+                    setInterval(()=>{
+                        this.count++;
+                    }, 1000);
+                }
+            }
+
+        }).mount("#app");
+
+    </script>
+</body>
+</html>

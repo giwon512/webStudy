@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        for(let i = 0; i < 10; i++)
+            console.log('*');
+
+        const user = {
+            name : 'giwon',
+            age : 25,
+            isVaild : true,
+            email : 'giwon512@naver.com'
+        }
+
+        for(const u in user) {
+            console.log(user[u]);
+        }
+
+        for(let i = 1; i <= 5; i++){
+            for(let j = 1; j <= i; j++){
+                document.write("*");
+            }
+            document.write("<br>");
+        }
+        document.write("<hr>");
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

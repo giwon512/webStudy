@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <button @click.left="test">실행1</button>
+            <button @click.left.shift="test">실행2</button>
+        </div>
+        <div v-html="message"></div>
+    </div>
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            methods : {
+                test(){ alert("실행") }
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+<body>
+    <h1>필터링</h1>
+    <div id="app">
+        <div>
+            search : <input type="text" v-model="name" />
+        </div>
+        <ul v-for="user in search()">
+            <li>{{user}}</li>
+        </ul>
+    </div>
+
+    <script>
+        let data1 = {list : ["유비", "관우", "장비", "조운", "제갈량", 
+            "조조"],
+            name : ""
+        }
+        const {createApp} = Vue;
+        createApp({
+            data() {
+                return data1;
+            },
+            methods : {
+                search(){
+                    if(this.name.length == 0)
+                        return this.list;
+                    
+                    this.list.filter()
+
+                    return this.list.filter((param) => {
+                        return this.list.indexOf(param) !== 0;
+                    });
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>

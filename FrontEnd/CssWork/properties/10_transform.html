@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        transform : 변환함수1 변환함수2 ...
+        transform : 원근법 이동 크기 회전 기울임
+        변환함수(2D)
+        -translate(x, y)
+        -translateX(x)
+        -translateY(y)
+        -scale(x, y)
+        -rotate(degree)
+        -skewX(x)
+        -skewY(y)
+        변환함수(3D)
+        -rotateX
+        -rotateY
+        -perspective(n)
+
+        3d 관련 속성
+        -perspective : 값(px)
+        -backface-visibility : visible or hidden
+        */
+        body {
+            padding : 100px;
+        }
+        .container {
+            width : 200px;
+            height : 100px;
+            background-color:  royalblue;
+            perspective: 500px;
+
+        }
+        .container .item {
+            width : 100px;
+            height : 100px;
+            background-color: orange;
+            transform : rotateY(145deg);
+            /* backface-visibility: hidden; */
+            /* transform : perspective(400px) rotateX(45deg) rotateY(45deg);
+                translate(100px, 100px) 
+                scale(1.2) 
+                rotate(45deg)
+                skewX(50deg); */
+        }
+        /* .container .item:hover {
+            transform : translate(100px, 100px);
+        } */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">AB</div>
+    </div>
+</body>
+</html>

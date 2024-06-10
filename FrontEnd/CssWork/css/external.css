@@ -1,0 +1,12 @@
+@import url("./box.css");
+
+h1{
+    color : brown;
+    font : 20pt 궁서;
+}
+span{
+    background-color:  aqua;
+}
+body{
+    color : blue;
+}

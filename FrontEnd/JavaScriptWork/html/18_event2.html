@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../JS/log.js"></script>
+    <script>
+        function fnLoad(){
+            log("first result");
+        }
+
+        function fnCall(){
+            log("fnCall function called");
+        }
+        function fnCall2(){
+            log("fnCall2 function called");
+        }
+        function fnCall3(ev){
+            log(ev.target);
+            log(ev.id);
+            log(ev.type);
+        }
+        //이거 안쓸거면 스크립트문 html 밑으로
+        window.onload = function(){ 
+            let btn = document.querySelectorAll("button");
+            btn[0].addEventListener("click", fnCall);
+            btn[0].addEventListener("click", fnCall2);
+            btn[0].removeEventListener("click", fnCall);
+
+            btn[1].addEventListener("click", 
+            (ev) => {log(ev.target); log(ev.id); log(ev.type)});
+            btn[1].addEventListener("keydown", 
+            (ev)=>{log(ev.key);});
+            btn[1].addEventListener("wheel", 
+            (ev)=>{log(ev.deltaY);});
+        }
+    
+    </script>
+</head>
+<body>
+    <button>버튼</button>
+    <button id="btn2">버튼2</button>
+    <div id="debugConsole" style="border:1px solid red;"></div>
+</body>
+</html>

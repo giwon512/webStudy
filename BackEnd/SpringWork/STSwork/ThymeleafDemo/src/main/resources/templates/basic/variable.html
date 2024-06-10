@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Variable</h1>
+	<ul>List.get(0)
+		<li>[[${list.get(0).getUserName()}]], [[${list.get(0).getAge()}]]</li>
+		<li>[[${list.get(0).userName}]], [[${list.get(0).age}]]</li>
+		<li>[[${list.get(0)['userName']}]], [[${list.get(0)['age']}]]</li>
+	</ul>
+	
+	<hr>
+	
+	<ul th:with="item=${list[1]}">List.get(1)
+		<li>[[${item.getUserName()}]], [[${item.getAge()}]]</li>
+		<li>[[${item.userName}]], [[${item.age}]]</li>
+		<li>[[${item['userName']}]], [[${item['age']}]]</li>
+	</ul>
+	
+	<hr>
+	
+	<ul th:with="item=${map['a']}">map['a']
+		<li>[[${item.getUserName()}]], [[${item.getAge()}]]</li>
+		<li>[[${item.userName}]], [[${item.age}]]</li>
+		<li>[[${item['userName']}]], [[${item['age']}]]</li>
+	</ul>
+</body>
+</html>

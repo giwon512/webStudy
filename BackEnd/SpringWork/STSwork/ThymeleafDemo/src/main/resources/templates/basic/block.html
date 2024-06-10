@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>block</h1>
+	
+	<div th:each="user : ${userList}" th:object="${user}">
+		사용자 이름 : [[*{userName}]] <br>
+		사용자 나이 : [[*{age}]] <br>
+	</div>
+	
+	<div th:each="user : ${userList}" th:object="${user}">
+		요약 : [[*{userName}]] / [[*{age}]]
+	</div>
+	
+	<hr>
+	
+	<th:block th:each="user : ${userList}" th:object="${user}">
+		<div>
+			사용자 이름 : [[*{userName}]] <br>
+			사용자 나이 : [[*{age}]] <br>
+		</div>
+		
+		<div>
+			요약 : [[*{userName}]] / [[*{age}]]
+		</div>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #grand{border:1px solid red;}
+        #parent{border:1px solid green;}
+        #child{border:1px solid blue;}
+    </style>
+    <script src="../js/log.js"></script>
+    <script>
+        window.onload = function(){
+            const child = document.getElementById('child');
+            const parent = document.getElementById('parent');
+            const grand = document.getElementById('grand');
+
+            grand.addEventListener("mousedown", ev => {
+                log("Grand");
+            }, false);
+            parent.addEventListener("mousedown", ev => {
+                log("Parent");
+                ev.stopPropagation();
+            }, false);
+            child.addEventListener("mousedown", ev => {
+                log("Child");
+                ev.stopPropagation();
+            }, false);
+        }
+    </script>
+</head>
+<body>
+    <div id="grand">
+        grand의 상단
+        <div id="parent">
+            parent의 상단
+            <div id="child">
+                child
+            </div>
+            parent의 하단
+        </div>
+         grand의 하단
+    </div>
+    <br><br>
+    <div id="debugConsole" style="border:1px solid red"></div>
+</body>
+</html>

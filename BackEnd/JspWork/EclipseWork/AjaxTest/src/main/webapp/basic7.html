@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script>
+	window.onload = () => {
+		let req = new XMLHttpRequest();
+		req.open("GET", "basic7.jsp", true);
+		req.onreadystatechange = () => {
+			if(req.readyState == 4){
+				if(req.status == 200){
+					let doc = req.responseXML;
+					
+					let ck = doc.getElementsByTagName("code");
+
+					if(ck.item(0).firstChild.nodeValue == "success"){
+						let data = eval("("+doc.getElementsByTagName("data").item(0).firstChild.nodeValue+ ")");
+						console.log(doc.getElementsByTagName("data").item(0).firstChild.nodeValue);
+						alert(data.name + ", " + data.id + ", " + data.age);
+						
+					}
+					
+				}
+				else{
+					alert(req.status);
+				}
+			}
+		};
+		req.send(null);	
+	};
+</script>
+</head>
+<body>
+	<h1>서버로부터 XML과 JSON 타입의 데이터를 받는 예제</h1>
+</body>
+</html>

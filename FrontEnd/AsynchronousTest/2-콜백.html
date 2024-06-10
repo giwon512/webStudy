@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // const a = () => {setTimeout(()=>{console.log("a")}, 1000);};
+        // const b = () => {console.log("b")};
+        // a();
+        // b();
+
+        // const a = (callback) => {
+        //     setTimeout(()=>{
+        //         console.log("a");
+        //         callback();
+        //     }, 1000);
+        // };
+        // const b = (callback) => {
+        //     setTimeout(()=>{
+        //         console.log("b");
+        //         callback();
+        //     }, 1000);
+        // };
+        
+        // const c = (callback) => {
+        //     setTimeout(()=>{
+        //         console.log("c");
+        //         callback();
+        //     }, 1000);
+        // };
+
+        // const d = () => {console.log("d");};
+        
+        // a(() => {
+        //     b(() => {
+        //         c(() => {
+        //             d();
+        //         });
+        //     });
+        // });
+
+        const getMoives = (movieName, callback) => {
+            fetch(`https://www.omdbapi.com/?apikey=7035c60c&s=${movieName}`)
+                .then((resp) => {
+                    return resp.json();
+                })
+                .then((resp) => {
+                    console.log(resp);
+                    callback();
+                });
+        };
+
+        getMoives('frozen', () => {
+            console.log("겨울 왕국!");
+            getMoives('avengers', () => {
+                console.log("어벤져스!");
+                getMoives('avatar', () => {
+                    console.log("아바타!");
+                });
+            });
+        });
+    </script>
+</body>
+</html>

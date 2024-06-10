@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+<body>
+    <h1>v-show</h1>
+    <div id="app">
+        <button @click="tog">소리내기</button>
+        <div v-show="visible">우와앙</div>
+    </div>
+
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            data() {
+                return {visible : false}
+            },
+            methods:{
+                tog(){
+                    this.visible = !this.visible;
+                }
+            },
+        }).mount("#app")
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            입력값(true, false) : <input type="checkbox" v-model="msg1"/><br>
+            결과 : {{msg1}}
+        </div>
+        <hr>
+        <div>
+            입력값(참, 거짓) : <input type="checkbox" v-model="msg2"
+                true-value="참" false-value="거짓"/><br>
+            결과 : {{msg2}}
+        </div>
+        <hr>
+        <div>
+            <label><input type="checkbox" value="첼강딱" v-model="msg3"/>첼시</label><br>
+            <label><input type="checkbox" value="맹9" v-model="msg3"/>맨유</label><br>
+            <label><input type="checkbox" value="닭집" v-model="msg3"/>토트넘</label><br>
+            결과 : {{msg3}}
+        </div>
+        <hr>
+        <div>
+            <label><input type="radio" value="첼강딱" v-model="msg4"/>첼강딱</label><br>
+            <label><input type="radio" value="맹9" v-model="msg4"/>맹9</label><br>
+            <label><input type="radio" value="닭집" v-model="msg4"/>닭집</label><br>
+            결과 : {{msg4}}
+        </div>
+        <hr>
+        <div>
+            <div v-for="mem in memberlist">
+                <label><input type="radio" value="mem" v-model="msg5"/>첼시</label><br>
+            </div>
+            결과 : {{msg5}}
+        </div>
+    </div>
+
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            data(){
+                return {    msg1 : "true", 
+                            msg2 : "거짓", 
+                            msg3 : ['모두다 강등→'], 
+                            msg4 : "모두다 강등",
+                            memberlist : ['유비', '관우', '장비', '제갈량', '조조'], 
+                            msg5 : "첼시"
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>

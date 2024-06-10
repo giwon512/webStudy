@@ -1,0 +1,19 @@
+package com.mysite;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
+
+@Mapper
+public interface EmployeeMapper {
+	
+	@Select("select * from emp")
+	List<Employee> getAllEmployees();
+	
+	@Insert("insert into emp values(seq_num.nextval, #{name}, #{email}")
+	void insertEmployee(Employee emp);
+
+}

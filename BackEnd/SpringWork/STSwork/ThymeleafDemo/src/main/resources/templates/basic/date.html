@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>date</h1>
+	default : [[${localDateTime}]]<br>
+	<hr>
+	
+	format<br> 
+	[[${#temporals.format(localDateTime, "yyyy-MM-dd HH:mm:ss")}]]<br>
+	[[${#temporals.day(localDateTime)}]]<br>                    
+	[[${#temporals.month(localDateTime)}]]<br>                  
+	[[${#temporals.monthName(localDateTime)}]]<br>              
+	[[${#temporals.monthNameShort(localDateTime)}]]<br>         
+	
+	
+</body>
+</html>

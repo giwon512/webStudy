@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul v-for="user in dt.list">
+            <li>이름 = {{user.name}}</li>
+            <li>나이 = {{user.age}}</li>
+            <li>주소 = {{user.address}}</li>
+        </ul>
+        <div>
+            <p>데이터 추가</p>
+            <p>
+                <span>name:<input type="text" class="user-name" v-model="dt.newUser.name"></span><br>
+                <span>age:<input type="text" class="user-age" v-model="dt.newUser.age"></span><br>
+                <span>address:<input type="text" class="user-address" v-model="dt.newUser.address"></span><br>
+                <p>
+                    <button class="btn-add-user" v-on:click="addUser"> 추가</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var data = {
+                  list:[{
+                        name:"user_1",
+                        age:10,
+                        address:"address_1"
+                  },{
+                        name:"user_2",
+                        age:20,
+                        address:"address_2"
+                  },{
+                        name:"user_3",
+                        age:30,
+                        address:"address_3"
+                  }],
+                  newUser : {
+                        name : "",
+                        age : "",
+                        address : ""
+                  }
+            }
+
+            const {createApp} = Vue;
+            createApp({
+                data() {
+                    return {dt : data};
+                },
+                methods : {
+                    addUser : function() {
+                        this.dt.list.push({
+                            name : this.dt.newUser.name,
+                            age : this.dt.newUser.age,
+                            address : this.dt.newUser.address
+                        });
+                        this.dt.newUser.name = "";
+                        this.dt.newUser.age = "";
+                        this.dt.newUser.address = "";
+                        console.log("----------");
+                    }
+                }
+            }).mount("#app");
+    </script>
+</body>
+</html>

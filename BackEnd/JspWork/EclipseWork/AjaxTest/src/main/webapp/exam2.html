@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script>
+	const fnSubmit = () => {
+		
+		let req = new XMLHttpRequest();
+		req.open("GET", "/AjaxTest/dynamic.do", true);
+		req.onreadystatechange = () => {
+			if(req.readyState == 4){
+				if(req.status == 200){
+					let data = req.responseXML;
+					let msg = data.getElementsByTagName("message").item(0).firstChild.nodeValue;
+					let td = document.getElementsByTagName("td").item(0);
+					td.innerHTML = msg;
+				}
+				else{
+					alert(req.status);
+				}
+			}
+		};
+		req.send(null);	
+	};
+	
+	window.onload = () => {
+		setInterval(fnSubmit, 3000);
+	};
+</script>
+</head>
+<body>
+	<h1>이 페이지는 자동으로 업데이트 됩니다.</h1>
+	이 페이지는 <span id="time">5</span>초 후에 갱신됩니다.
+	<br><br>
+	<table id="dynamicUpdateArea">
+		<tbody>
+			<tr id="row"><td></td></tr>
+		</tbody>
+	</table>
+</body>
+</html>

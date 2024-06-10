@@ -1,0 +1,156 @@
+1. 라이브러리 vs 프레임워크
+	- 라이브러리
+		사용자들이 사용하는 코드 집합으로, 손쉽게 대체 가능하다.
+		가구에 빗댈 수 있다.
+	- 프레임워크
+		개발자들이 개발하는데 사용되는 구조를 제공, 한 번 정해지면 바꾸기 힘들다.
+		집에 빗댈 수 있다.
+
+2. 스프링 프레임워크를 사용하는 이유
+	(1) 자주 사용하는 설정이나 코드를 매번 작성하지 않고 온전히 필요한 코드에만 집중 가능
+	(2) 코드의 품질 차이를 최소화, 코드의 일관성을 만들어 줌
+	(3) 코드의 인수인계와 유지보수가 수월해진다.
+
+3. 스프링과 스프링 부트
+	스프링을 개발하기 전 설정해야 할 내용이 정말 많지만, 스프링 부트에서는 이전 설정하는
+	부분이 많이 생략되어 간편하고 초보자가 다루기에 더 좋다.
+
+4. 공식사이트
+	https://spring.io
+	https://docs.spring.io/spring-framework/docs/5.3.30/javadoc-api/
+	https://docs.spring.io/spring-framework/docs/5.3.30/reference/html/
+
+5. 전자정부 프레임워크
+
+6. IDE
+	(1) STS
+	(2) IntelliJ
+	(3) Visual Studio Code
+	(4) Eclipse
+
+7. 프로젝트 생성 방법
+	(1) Maven
+		- http://maven.apache.org
+	(2) Gradle
+
+8. 스프링의 특징
+	(1) IoC(Inversion of Control) 컨테이너
+		스프링에는 이미 숙련된 개발자들의 패턴이 잘 정리되어 있다.
+		1) DI 패턴
+			- Constructor-based DI
+			- Setter-based DI
+		2) AOP 패턴
+
+
+9. 빈 객체 생성 방법
+	(1) XML
+		1) <bean></bean>
+		2) 전용 태그
+			<context>
+			<aop>
+	(2) 어노테이션 : 자동 인식을 이용
+		1) 빈 스캐닝(Bean scanning)
+			특정 어노테이션이 붙은 클래스를 자동으로 찾아서 bean 객체로 생성하여 등록해주는 방식
+	(3) 자바 코드에 의한 Bean 등록
+
+
+10. DI 설정
+	(1) XML
+		- <property>
+		- <constructor-arg>
+
+	(2) 자동 와이어링 방식 : 참조값에만 적용 가능
+		1) XML
+			- byName
+			- byType
+		2) 어노테이션
+			- @Resource : 이름으로 연결
+			- @AutoWired : 타입으로 연결
+
+
+11. Database
+	(1) org.springframework.jdbc.core.JdbcTemplate (Connection, Statement, ResultSet을 한 번에 묶음)
+		1) update() : insert, update, delete
+		2) query() : select
+			- RowMapper : 결과가 여러 개일 때
+			- ResultSetExtractor : 결과가 하나일 때
+	(2) MyBatis
+	(3) JPA
+
+12. DBCP
+	(1) C3P0
+		- https://www.mchange.com/projects/c3p0/
+	(2) Apache Commons DBCP
+		- https://commons.apache.org/proper/commons-dbcp/
+	(3) HikariCP
+		- https://github.com/brettwooldridge/HikariCP
+	https://velog.io/@won4932/Database-Connection-Pool-%EB%B9%84%EA%B5%90
+
+
+13. WEB
+	(1) 종류
+		1) web
+		2) webMVC
+
+	(2) 주요 클래스
+		org.springframework.web.servlet.mvc.Controller
+		org.springframework.web.servlet.DispatcherServlet
+			- 스프링 컨테이너를 생성
+			- Front Controller의 역할 수행
+
+	(3) WebMVC의 핵심 구성 요소
+		1) HandlerMapping(org.springframework.web.servlet.handler)
+			- BeanNameUrlHandlerMapping : default
+		2) ViewResolver
+			- InternalResourceViewResolver : default
+		3) View
+			- InternalResourceView : default
+			- JstlView
+			- VelocityView
+			- thymeleaf
+
+14. MyBatis
+	(1) 특징
+		1) DataBase Mapper Framework
+		2) 자바코드로부터 SQL문을 분리해서 관리
+		3) 작성할 코드가 줄어서 생산성 향상 및 유지보수 편리
+
+	(2) 준비물
+		1) 해당 라이브러리
+		2) Configuration 파일 : 환경 설정
+		3) Mapper 파일 : SQL문 작성
+
+
+	(3) 필요한 객체
+		1) SqlSessionFactory : SqlSession을 생성해서 제공
+		2) SqlSession : Sql 명령을 수행하는데 필요한 메서드 제공
+		3) SqlSessionFactoryBean : SqlSessionFactory를 Spring에서 사용하기 위한 Bean 객체
+		4) SqlSessionTemplate : Sql 명령을 수행하는데 필요한 메서드 제공(Thread-Safe)
+
+
+set linesize 200;
+set pagesize 50;
+col btitle for a20;
+col bwriter for a20;
+col bregdate for a30;
+col btitle for a20;
+
+15. 스프링 부트
+	(1) 프로젝트 작성 방법
+		1) https://start.spring.io	
+		2) IDE
+
+	(2) Template View
+		1) Thymeleaf
+			- 순수한 HTML을 사용 : Natural Template
+			- SSR(Server Side Rendering)
+		2) Mustache
+
+
+16. Thymeleaf
+	- https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#standard-expression-syntax
+
+
+
+
+

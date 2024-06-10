@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+     <h1> Life Cycle </h1>
+    <div>
+        <h2>기본 구조</h2>
+        <p id="app">
+            {{name}}, count={{count}}
+        </p>
+    </div>
+    <script>
+
+        const {createApp} = Vue
+        createApp({
+            data() {
+                return { 
+                    name : "Vue",
+                    count : 0,
+                }    
+            },
+            setup() {
+                console.log("1.setUp = ", this.name);
+            },
+            beforeCreate() {
+                console.log("2.beforeCreated = ", this.name);
+            },
+            created() {
+                console.log("3.created = ", this.name);
+                this.test();
+            },
+            beforeMount() {
+                console.log("4.beforeMount = ", this.name);
+            },
+            mounted() {
+                console.log("5.mounted = ", this.name);
+            },
+            methods: {
+                test : function() {
+                    setInterval(() => {
+                        this.count++;
+                    }, 1000);
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

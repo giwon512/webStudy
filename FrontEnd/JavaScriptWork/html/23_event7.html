@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            padding : 10px;
+            border : 4px solid transparent;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        form.active{
+            border-color : orange;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            const input1 = document.querySelector("input");
+
+            // input1.addEventListener('keyup', e => {
+            //     console.log(e.key);
+            // });
+            input1.addEventListener('keydown', e => {
+                if(e.key === "Enter"){
+                    console.log(e.target.value);
+                }
+            });
+
+            // const form1 = document.querySelector("form");
+            const inputs = document.forms[0].querySelectorAll("input");
+            inputs.forEach(i => {
+                i.addEventListener('focus', e => {
+                    document.forms[0].classList.add('active');
+                    //document.forms[0].style.border = "1px solid skyblue";
+                })
+                i.addEventListener('blur', e => {
+                    document.forms[0].classList.remove('active');
+                })
+                i.addEventListener('input', e => {
+                    console.log(i.value);
+                })
+            })
+
+            const txtIn = document.getElementById('txtIn');
+            txtIn.addEventListener('keydown', e => {
+                document.getElementById('txtKeyCode').value = e.keyCode;
+                document.getElementById('txtCtrl').value = e.ctrlKey;
+                document.getElementById('txtShift').value = e.shiftKey;
+            });
+        }
+    </script>
+</head>
+<body>
+    <input type="text" />
+    <hr>
+    <form action="">
+        <fieldset>
+            <legend>로그인</legend>
+            <input type="text" placeholder="ID" />
+            <input type="password" placeholder="PW" />
+            <button type="submit">전송</button>
+            <button type="reset">취소</button>
+        </fieldset>
+    </form>
+    <hr>
+    키보드 입력 : <input type="text" name="" id="txtIn" />
+    <br><br>
+    키코드 값 : <input type="text" id = "txtKeyCode" readonly />
+    <br><br>
+    ctrl 값 : <input type="text" id="txtCtrl" readonly />
+    <br><br>
+    shift 값 : <input type="text" name="" id="txtShift" readonly />
+</body>
+</html>

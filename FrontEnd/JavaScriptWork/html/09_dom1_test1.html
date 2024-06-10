@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function funLoad(){
+            const root = document.documentElement;
+            console.log(root.nodeName);
+            console.log(root.nodeValue);
+            console.log(root.nodeType);
+
+            const body = document.documentElement.lastChild;
+            // console.log(first.nodeName);
+            // console.log(first.nodeValue);
+            // console.log(first.nodeType);
+            let span = body.firstElementChild;
+            //let span = document.getElementById("a");
+            console.log(span.nodeName);
+            console.log(span.nodeValue); //주석, 텍스트 노드만 값 나옴
+            //나머지 태그 요소 등은 죄다 null 반환
+            console.log(span.nodeType);
+            let p = span.nextElementSibling;
+            console.log(p.nodeName);
+            console.log(p.nodeValue);
+            console.log(p.nodeType);
+
+            console.log(document.getElementsByTagName("p"));
+            console.log(document.getElementsByTagName("p").length);
+            console.log(document.getElementsByTagName("p").item(1).textContent);
+
+            console.log(span.getAttribute("id"));
+            let spanArr = document.querySelectorAll("span");
+            spanArr.forEach((e) => {
+                console.log(e.getAttribute("id"));
+            })
+        }
+    </script>
+</head>
+<body onload="funLoad();">
+    <span id="a">a</span>
+    <p>
+        <b>진하게</b>test<span id="b">b입니다.</span>
+    </p>
+    <div>
+        <p>p</p><span id="c">c</span>
+    </div>
+</body>
+</html>

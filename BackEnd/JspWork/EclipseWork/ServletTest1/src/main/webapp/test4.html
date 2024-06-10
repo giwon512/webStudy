@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Test4</title>
+	<script>
+	window.onload = () => {
+		let formSubmit = document.getElementsByTagName("form");
+	  	formSubmit[0].addEventListener('submit', ev=>{
+	  		//ev.preventDefault();
+	  		
+	  		//비밀번호 길이 체크
+			const passwd = document.getElementsByName("passwd");
+			if(passwd[0].value.length < 3 || passwd[0].value.length > 8){
+				alert("비밀번홍는 3글자 이상 8글자 이하를 입력해주세요.");
+				return;
+			}
+			
+			//생년월일 숫자 체크
+			const birth = document.getElementsByName("birth");
+			for(let i = 0; i < birth[0].value.length; i++){
+				if(birth[0].value.charAt(i) < '0' || birth[0].value.charAt(i) > '9'){
+					alert("생년월일은 숫자로만 입력해주세요.");
+					return false;
+				}
+			}
+			ev.target.submit();
+		}, false);
+	}
+	</script>
+</head>
+<body>
+	<form action="/ServletTest1/info" method="POST">
+	<table width="100%" border=1>
+		<tr>
+			<td>
+				이름 : <input type="text" name="name" required><br> 
+				암호 : <input type="password" name="passwd" required><br>
+				생년월일 : <input type="text" name="birth" required><br><br>
+			</td>
+			<td>성별 :<br> <input type="radio" name="gender" value="male"
+				checked>남자 <input type="radio" name="gender" value="female">여자<br>
+
+				<br>사용중인 JDK는?<br> <input type="checkbox" name="jdk1.3"
+				value="jdk1.3"> JDK 1.3.x<br> <input type="checkbox"
+				name="jdk1.4" value="jdk1.4"> JDK 1.4.x<br> <input
+				type="checkbox" name="jdk1.5" value="jdk1.5"> JDK 1.5.x<br>
+			</td>
+		<tr>
+		<tr>
+			<td><input type="hidden" name="state" value="ready">
+
+				사용중인 운영 체제는?<br> <select name="os" size=3 multiple>
+					<option value="win32">윈도우즈
+					<option value="linux">리눅스
+					<option value="solaris">솔라리스
+					<option value="os2">OS2
+					<option value="nextstep">NextStep
+			</select> <br>
+			<br> 사용중인 컴퓨터 하드웨어는?<br> <select name="hw">
+					<option value="pentium">펜티엄
+					<option value="misc">기타
+			</select></td>
+			<td><br> 기타 건의 사항<br> <textarea name="opinion" rows=10
+					cols=40>
+		</textarea></td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<center>
+					<input type="submit" value="전송"> <input type="submit"
+						value="취소">
+				</center>
+			</td>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>
+
+<!--  
+1. 입력값 체크
+	1) 입력한 ID는 자동으로 대문자로 변환시킨다.
+	2) 패스워드는 3글자 이상 8글자 이하로 입력받게 한다.
+	3) 생년월일은 숫자만 입력할 수 있게 한다.
+
+2. 입력 받은 내용을 적당하게 화면에 출력
+
+
+ -->

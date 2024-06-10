@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul class="list">
+            <li v-for="name in dt.list"> name = {{name}}</li>
+        </ul>
+
+        <div>
+              <p>데이터 추가</p>
+              <p>
+                    <span>name:<input type="text" class="user-name" v-model="dt.newUser"></span><br>
+              <p>
+                    <button class="btn-add-user" v-on:click="addUser"> 추가</button>
+              </p>
+        </div>
+    </div>
+
+  <script>
+        var data = {
+              list:["user01", "user02", "user03"],
+              newUser : ""
+        }
+
+        const {createApp} = Vue;
+        createApp({
+            data() {
+                return {dt : data};
+            },
+            methods : {
+                addUser : function() {
+                    this.dt.list.push(this.dt.newUser);
+                    this.dt.newUser = "";
+                }
+            }
+        }).mount("#app");
+
+  </script>   
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../JS/log.js"></script>
+    <script>
+        window.onload = function() {
+            const div_parent = document.getElementsByClassName("parent");
+
+            div_parent[0].addEventListener("wheel", (ev)=>{
+                ev.preventDefault();
+                log(ev.deltaY);
+            });
+
+            const anchor = document.querySelector("a");
+            anchor.addEventListener('click', ev=> {
+                ev.preventDefault();
+                log("click");
+            });
+        }
+        const div_parent = document.getElementsByClassName("parent");
+        div_parent[0].addEventListener("wheel", (ev)=>{
+                ev.preventDefault();
+                log(ev.deltaY);
+            });
+    </script>
+</head>
+<body>
+    <div class="parent" style="height:1000px;">
+        <div class="child">
+            <a href="https://www.w3schools.com">w3schools</a>
+        </div>
+        <br><br>
+        <div id="debugConsole" style="border: 1px solid red"></div>
+    </div>
+</body>
+</html>

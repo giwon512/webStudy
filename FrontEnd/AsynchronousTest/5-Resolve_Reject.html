@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        const delayAdd = index => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if(index > 10) {
+                        reject(`${index}는 10보다 클 수 없다.`);
+                        return;
+                    }
+                    resolve(index);
+                }, 1000);
+            });
+            
+        }; 
+
+        const cb = (res) => {
+            console.log(res);
+        };
+        const errorCb = (err) => {
+            console.error(err);
+        };
+
+        delayAdd(5).then(cb).catch(errorCb).finally(() => console.log("Done!"));
+        delayAdd(50).then(cb).catch(errorCb).finally(() => console.log("Done!"));
+
+        const wrap = async () => {
+            try{
+                const res = await delayAdd(15);
+                console.log(res);
+            }
+            catch(err) {
+                console.error(err);
+            }
+        };
+
+        wrap();
+        */
+
+        const getMovies = (movieName) => {
+            return new Promise((resolve, reject) => {
+                fetch(`https://www.omdbapi.com/?apikey=7035c60c&s=${movieName}`)
+                    .then(res => res.json())
+                    .then(res => {
+                        // console.log(res);
+                        if(res.Response === 'False'){
+                            reject(res.Error);
+                        }
+                        resolve(res);
+                    });
+            });
+        };
+
+        // getMovies("avengers")
+        //     .then((movies) => {console.log("영화 목록 :", movies)})
+        //     .catch((err) => {console.log("에러 발생 : ", err)})
+        //     .finally(() => {loading = false});
+
+        (async () => {
+            try{
+                const res = await getMovies('avengers');
+                console.log("영화 목록 :", res);
+            }
+            catch(err) {
+                console.log("에러 발생 : ", err);
+            }
+            finally{
+                loading = false;
+            }
+        })();
+    </script>
+</body>
+</html>

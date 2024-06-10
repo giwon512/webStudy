@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        -document.createElement()
+        -E.prepend(), E.append()
+        -E.remove()
+        -E.insertAdjacentElement(위치, 새로운 요소) 
+        : 대상 요소의 지정한 위치에 새로운 요소 삽입
+        // <!-- beforebegin -->
+        // <div class="target">
+        //     <!-- afterbegin -->
+        //     content
+        //     <!-- beforeend -->
+        // </div>
+        // <!-- afterend -->
+            
+        // -N.insertBefore(추가할 노드, 참조할 노드) 
+        // : N은 부모 노드, 참조할 노드는 자식이며 추가할 노드는 참조할 노드의 형제 노드로 추가됨
+        // -N.contains(주어진 노드) : 주어진 노드가 자신을 포함한 후손인지 확인
+        // -N.textContent : 노드의 모든 텍스트를 얻거나 변경
+        // -E.innerHTML, E.innerText 
+        // : 요소의 html 내용을 하나의 문자로 가져오거나 새로운 html 지정
+        // textcontent와는 다르게 태그 내용까지 가져올 수 있다.
+        // -E.dataset : 'data-' 속성값을 얻거나 지정한다.
+        // -E.tagName : 요소의 태그명 반환
+        // -E.id : 요소의 id 속성값을 얻거나 반환
+        // -E.className : 요소의 class 속성값을 얻거나 반환
+        // -E.classList : 요소의 class 속성값을 제어
+        //     .add(), .remove(), .toggle(), .contains()
+        // -E.getAttribute("속성명"), E.setAttribute("속성명", "값")
+        // -E.hasAttribute("속성명")
+        // -E.removeAttribute("속성명")
+        // -E.style : 요소의 style 속성의 css 속성값을 얻거나 지정한다.
+        // -window.getComputedStyle() : 요소에 적용된 스타일 객체를 반환
+        // */
+        function fnLoad(){
+            let e_div = document.createElement("div");
+            let parent = document.querySelector(".parent");
+            e_div.textContent = "hello world";
+            parent.append(e_div);
+            parent.append("!!!");
+
+            comment = new Comment('this is comment');
+            parent.prepend(comment);
+
+            //insertAdjacentElement
+            let child1 = document.querySelector(".child");
+            let e_span = document.createElement("span");
+            e_span.textContent = "HELLO WORLD";
+            child1.insertAdjacentElement('beforebegin', e_span);
+            child1.insertAdjacentElement('afterend', e_span);
+
+            //insertBefore
+            let e_span2 = document.createElement("span");
+            e_span2.textContent = "InsertBefore()";
+            parent.insertBefore(e_span2, child1);
+
+            //contains
+            console.log(parent.contains(document.documentElement));
+            console.log(document.body.contains(parent));
+
+            //innerHTML
+            console.log(parent.innerHTML);
+            console.log(parent.textContent); 
+            console.log(parent.innerText); //줄바꿈 처리를 해줌
+            parent.innerHTML += "<br><span style='color:red'>hello</span>";
+
+            console.log(parent.tagName);
+            console.log(e_span.tagName);
+            child1.id = "child1";
+            console.log(child1.id);
+            console.log(child1.className);
+            child1.className += " active";
+            console.log(child1.className);
+            console.log(child1);
+
+            let str = "test string";
+            let obj = {a:1, b:2};
+            parent.dataset.helloworld = str;
+            //parent.dataset.obj = JSON.stringify(obj);
+            parent.dataset.obj = obj;
+            console.log(parent);
+            console.log(parent.dataset.helloworld);
+            console.log(parent.dataset.obj);
+            
+
+        }
+    </script>
+</head>
+<body onload="fnLoad();">
+    <div class="parent">
+        <div class="child">1</div>
+        <div class="child">2</div>
+    </div>
+</body>
+</html>
